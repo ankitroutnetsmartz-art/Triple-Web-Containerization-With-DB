@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root { --primary: #f59e0b; --bg: #451a03; --glass: rgba(255, 255, 255, 0.03); }
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at bottom left, #78350f, #451a03); color: white; margin: 0; min-height: 100vh; }
+        .navbar { position: fixed; top: 0; width: 100%; height: 70px; background: rgba(69, 26, 3, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: space-between; padding: 0 50px; box-sizing: border-box; z-index: 1000; }
+        .nav-logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; }
+        .nav-status { display: flex; align-items: center; gap: 12px; }
+        .status-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 12px #10b981; animation: pulse 2s infinite; }
+        .node-tag { background: var(--glass); padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; border: 1px solid rgba(255,255,255,0.1); font-family: 'Fira Code', monospace; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        .container { height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .glass-card { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 3rem; border-radius: 24px; width: 380px; text-align: center; }
+        select { width: 100%; padding: 12px; border-radius: 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; margin-bottom: 1.5rem; appearance: none; text-align: center; }
+        button { width: 100%; padding: 14px; border-radius: 12px; border: none; background: var(--primary); color: #451a03; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #fbbf24; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">TRIPLE-WEB <span style="color:var(--primary)">GAMMA</span></div>
+        <div class="nav-status"><span class="node-tag" style="border-color: #38bdf8; color: #38bdf8;">GLOBAL TRAFFIC: {{ traffic }}</span>
+            <div class="status-dot"></div>
+            <span class="node-tag">NODE: {{ node }}</span>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="glass-card">
+            <h1>System Feedback</h1>
+            <p style="color: #fbbf24; font-size: 0.85rem; margin-bottom: 1.5rem;">Rate Load Balancer Stability</p>
+            <form method="POST">
+                <select name="rating">
+                    <option value="5">Excellent Stability</option>
+                    <option value="4">High Performance</option>
+                    <option value="3">Operational</option>
+                    <option value="2">Degraded State</option>
+                    <option value="1">Critical Alert</option>
+                </select>
+                <button type="submit">Submit Telemetry</button>
+            </form>
+            {% if msg %}<div style="margin-top:1.5rem; color:var(--primary);">{{ msg }}</div>{% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root { --primary: #10b981; --bg: #064e3b; --glass: rgba(255, 255, 255, 0.03); }
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top right, #064e3b, #022c22); color: white; margin: 0; min-height: 100vh; }
+        .navbar { position: fixed; top: 0; width: 100%; height: 70px; background: rgba(2, 44, 34, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: space-between; padding: 0 50px; box-sizing: border-box; z-index: 1000; }
+        .nav-logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; }
+        .nav-status { display: flex; align-items: center; gap: 12px; }
+        .status-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 12px #10b981; animation: pulse 2s infinite; }
+        .node-tag { background: var(--glass); padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; border: 1px solid rgba(255,255,255,0.1); font-family: 'Fira Code', monospace; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        .container { height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .glass-card { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 3rem; border-radius: 24px; width: 400px; text-align: center; }
+        .btn-row { display: flex; gap: 12px; margin-top: 1rem; }
+        button { flex: 1; padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; cursor: pointer; transition: 0.2s; font-weight: 600; }
+        button:hover { background: var(--primary); color: #022c22; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">TRIPLE-WEB <span style="color:var(--primary)">BETA</span></div>
+        <div class="nav-status"><span class="node-tag" style="border-color: #38bdf8; color: #38bdf8;">GLOBAL TRAFFIC: {{ traffic }}</span>
+            <div class="status-dot"></div>
+            <span class="node-tag">NODE: {{ node }}</span>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="glass-card">
+            <h1>DevOps Audit</h1>
+            <p style="color: #d1d5db; margin-bottom: 2rem;">Does IaC eliminate manual errors?</p>
+            <form method="POST" class="btn-row">
+                <button name="quiz" value="Yes">Yes</button>
+                <button name="quiz" value="No">No</button>
+            </form>
+            {% if msg %}<div style="margin-top:1.5rem; color:var(--primary);">{{ msg }}</div>{% endif %}
+        </div>
+    </div>
+</body>
+</html>
